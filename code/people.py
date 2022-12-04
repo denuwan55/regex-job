@@ -1,6 +1,11 @@
+# importing libraries
 import re
 
+
 class Employee:
+    """_summary_ : This class represents an employee
+       _attributes_ : This class has 4 attributes representing employee first and last names, address and the email
+    """
     def __init__(self, line:str):
         self.first_name = parse_name(line)[0][0]
         self.last_name = parse_name(line)[0][1]
@@ -8,13 +13,25 @@ class Employee:
         self.email = parse_email(line)
 
 class Address:
+    """_summary_ : This class represents an address
+    """
     def __init__(self, street, city, state):
         self.street = street
         self.city = city
         self.state = state
         
 def parse_name(text):
+    """_summary_ : This will parse the name out of a given string
+
+    Args:
+        text (str): This is a single line of the input file
+
+    Returns:
+        tuple: returns a tuple which includes first and last names
+    """
+    # this regex will extract two names at the beginning of the string
     compiled = re.compile("^([A-Z][a-z]+) ([A-Z][a-z]+)")
+    # finf all occurances and return them
     return re.findall(compiled, text)
 
 def parse_address(text):
